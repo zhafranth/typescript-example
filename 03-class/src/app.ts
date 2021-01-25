@@ -25,6 +25,7 @@ person1.printAge();
 
 // Inheritance
 class Giant extends Person {
+  // Pewarisan mewariskan semua properti dan method dari parent class
   constructor(name: string) {
     super(name, ``);
     this.age = 29;
@@ -33,6 +34,70 @@ class Giant extends Person {
 
 let person2 = new Giant("Sincinpng");
 console.log(person2);
+
+// Setter dan Getters
+class Plant {
+  private _species: string = "default";
+
+  set species(value: string) {
+    if (value.length > 3) {
+      this._species = value;
+    } else {
+      this._species = "default";
+    }
+  }
+
+  get species() {
+    return this._species;
+  }
+}
+
+let tanaman = new Plant();
+
+tanaman.species = "mawar";
+console.log(tanaman.species);
+tanaman.species = "Ma";
+console.log(tanaman.species);
+
+// Static Properti dan methods
+class Helper {
+  static pi: number = 3.14; // static agar daoat dipanggil tanpa disimpan dalam variabel
+  static sum(n1: number, n2: number): number {
+    return n1 + n2;
+  }
+}
+Helper.sum(1, 2);
+console.log(Helper.pi);
+
+// Abstract class
+abstract class Project {
+  projectName: string = "default";
+  abstract changeName(name: string): void;
+}
+
+class ItProject extends Project {
+  changeName(name: string): void {
+    this.projectName = name;
+  }
+}
+
+let project = new ItProject();
+project.changeName("Informatika");
+
+// Private constructur and singletons
+class OnlyOne {
+  private static instance: OnlyOne;
+
+  private constructor(public readonly name: string) {}
+
+  static getInstance() {
+    if (!OnlyOne.instance) {
+      OnlyOne.instance = new OnlyOne("The Only One");
+    }
+    return OnlyOne.instance;
+  }
+}
+let only = OnlyOne.getInstance();
 
 // Basics
 // class Department {
